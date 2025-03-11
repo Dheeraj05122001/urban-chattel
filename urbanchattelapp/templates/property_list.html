@@ -1,0 +1,113 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Property Listing</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+  <header class="bg-white shadow">
+    <div class="container mx-auto flex justify-between items-center py-0 px-6">
+      <div class="flex items-center">
+        <img alt="Urban Chattel Logo" class="h-15 w-40" height="40"
+          src="https://urbanchattel.com/wp-content/uploads/2025/02/Urban-chattel.png" width="50" />
+      </div>
+      <nav class="md:flex md:space-x-4 hidden sm:flex">
+        <a class="text-gray-900 font-semibold hover:text-red-900 hover:border-b-2border-red-200" href="/"> Home </a>
+        <a class="text-gray-900 font-semibold hover:text-red-900" href="#"> Agencies </a>
+        <a class="text-gray-900 font-semibold hover:text-red-900" href="#"> Agents </a>
+        <a class="text-gray-900 font-semibold hover:text-red-900" href="#"> Contact </a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <div class="relative">
+          <i class="fas fa-exchange-alt text-teal-500 sm:text-2xl text-md"> </i>
+          <span class="absolute top-0 right-0 bg-red-500 text-white sm:text-xs text-[6px] rounded-full px-1">
+            0
+          </span>
+        </div>
+        <div class="relative">
+          <i class="fas fa-heart text-teal-500 sm:text-2xl text-md"> </i>
+          <span class="absolute top-0 right-0 bg-red-500 text-white sm:text-xs text-[6px] rounded-full px-1">
+            0
+          </span>
+        </div>
+        <i class="fas fa-user-circle text-teal-500 sm:text-2xl text-md"> </i>
+        <button class="bg-red-600 text-white px-4 py-2 rounded-full sm:block hidden"><a href="/upload/">Add Property</a>
+
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}
+
+
+    <div>
+      <form method="get">
+      <input type="text" name="name" placeholder="Search by name" value="{{ request.GET.name }}">
+      <input type="number" name="price_min" placeholder="Filter by min price" value="{{ request.GET.price_min }}">
+      <input type="number" name="price_max" placeholder="Filter by max price" value="{{ request.GET.price_max }}">
+      <input type="text" name="location" placeholder="Search by location" value="{{ request.GET.location }}">
+      <input type="text" name="builder" placeholder="Search by builder" value="{{ request.GET.builder }}">
+      <button type="submit">Filter</button>
+  </form>
+  
+  <ul>
+      {% for property in property %}
+  
+      {% empty %}
+          <li>No property found.</li>
+      {% endfor %}
+  </ul>
+  </div>
+
+
+
+    <div class="container mx-[100px] px-8">
+      <h1 class="text-3xl font-bold my-6">Property Listings</h1>
+      <div class="mt-4 flex flex-wrap gap-x-24 gap-y-12">
+        {% for property in property %}
+        <div class="bg-white transition-transform duration-500 ease-in-out hover:scale-110 flex flex-row rounded-lg shadow-lg p-6 w-1/3 md:w-5/6 lg:w-1/4 xl:w-[40%] min-h-[300px]">
+          <div>
+            <a href="{% url 'property_detail' property.pk %}"><img src="{{ property.image.url }}"
+                alt="{{ property.name }}" class="w-[300px] h-[300px] rounded-lg " /></a>
+          </div>
+          <div class="ml-8">
+            <a href="{% url 'property_detail' property.pk %}">
+              <h1 class="text-2xl font-semibold">{{ property.name }}</h1>
+            </a>
+            <p class="text-lg font-bold text-blue-600">Price: ₹{{ property.price_min }} Cr - {{ property.price_max}} Cr
+            </p>
+
+            <p class="text-gray-600">{{ property.location }}</p>
+            <a href="{% url 'property_detail' property.pk %}" class="text-black font-semibold">
+              <div class="mt-2 bg-white rounded">
+                <p><strong>Project Size:</strong> {{ property.project_size_units }} units</p>
+                <p><strong>Sq.Ft:</strong>{{property.project_size_acres}} Acres </p>
+                <p><strong>Configurations:</strong> {{ property.configurations }}</p>
+                <p><strong>Size:</strong> {{ property.flat_size_min }} - {{ property.flat_size_max }} Sq. Ft.</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    {% endblock %}
+    </main>
+
+    <footer>
+        <p>Site Footer</p>
+    </footer>
+
+
+</body>
+
+</html>

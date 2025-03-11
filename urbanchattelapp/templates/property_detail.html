@@ -1,0 +1,203 @@
+{% extends "property_list.html" %}
+{% load static %}
+
+{% block title %} {{ property.title }} {% endblock %}
+{% block content %}
+  <div class="container mx-auto p-6">
+    <div class=" rounded-lg mx-[200px]">
+      <img src="{{ property.image.url }}" alt="{{ property.title }}" class="w-max h-80  object-cover rounded">
+      <h1 class="text-3xl font-bold mt-4">{{ property.name }}</h1>
+      <p class="text-gray-500">{{ property.location }}</p>
+      <p class="text-xl text-blue-600 font-semibold">
+        ₹ {{ property.price_min }} Cr - {{ property.price_max }} Cr
+      </p>
+
+      <div class="bg-gray-100 shadow-lg p-4 rounded-lg mt-4 flex flex-row justify-between">
+        <div>
+          <p><strong>Project Size:</strong> </p>
+          <p>{{ property.project_size_units }} units • {{ property.project_size_acres }}
+            Acres</p>
+        </div>
+        <div class="mt-2 text-gray-400">|</div>
+        <div>
+          <p><strong>Configurations:</strong></p>
+          <p>{{ property.configurations }} BHK flats</p>
+        </div>
+        <div class="mt-2 text-gray-400"">|</div>
+        <div>
+          <p><strong>Size:</strong> </p>
+          <p>{{ property.flat_size_min }} sq. Ft. - {{ property.flat_size_max }} Sq. Ft.</p>
+        </div>
+      </div>
+
+      <p class=" mt-4">{{ property.description }}</p>
+        </div>
+      </div>
+      <div class="container mx-auto p-5 shadow-lg w-[830px]">
+        <div class=" rounded-lg">
+          <div>
+            <p class="border-b-2 border-gray-200 h-10"><strong>About {{ property.name }}</strong> </p><br>
+            <button><strong>Project OverView</strong></button><br><br>
+            <div>
+              <p>{{ property.about }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto p-6 ">
+        <div class=" rounded-lg mx-[200px] ">
+
+          <div class="bg-gray-100 shadow-lg p-4 rounded-lg mt-4">
+            <div class="border-b-2 border-gray-200 h-10"><strong> {{ property.name }} Project Overview</strong></div>
+            <div class="mt-4 flex flex-row">
+              <div class="flex flex-col pr-36 border-r-2 pl-10 border-gray-200">
+                <div class="py-3">
+                  <p><strong>Project Status:</strong> </p>
+                  <p>{{ property.project_status }}</p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Unit Size:</strong> </p>
+                  <p>{{ property.flat_size_min }} sq. Ft. - {{ property.flat_size_max }} Sq. Ft.</p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Total number of unit :</strong> </p>
+                  <p>{{ property.project_size_units }} units • {{ property.project_size_acres }}
+                    Acres</p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Locality:</strong></p>
+                  <p>{{ property.loaclity }} </p>
+                </div>
+              </div>
+
+              <div class="pl-16">
+                <div class="py-3">
+                  <p><strong>Configurations:</strong></p>
+                  <p>{{ property.configurations }} BHK flats</p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Builder:</strong></p>
+                  <p>{{ property.builder }} </p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Project Size:</strong></p>
+                  <p>{{ property.project_size_acres }} Acres </p>
+                </div>
+                <div class="py-3">
+                  <p><strong>Micro Market:</strong></p>
+                  <p>{{ property.micro_market }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-6 py-4 rounded-lg shadow-lg mt-12">
+            <h1><strong>{{ property.name }} Amenities</strong></h1>
+            <div class="rounded-lg mb-2">
+              <button id="toggleButton1" onclick="toggleDropdown('sportsDropdown')"
+                class="w-full mt-5 rounded-lg bg-gray-100 border-2 border-gray-200 text-left p-3 flex justify-between items-center">
+                <span class="font-bold">Sports</span>
+                <span>▼</span>
+              </button>
+              <div id="sportsDropdown" class="rounded-b-lg bg-gray-100 border-b-2 border-l-2 border-r-2 border-gray-200 hidden pb-6 flex flex-wrap gap-4">
+                <div class="container mt-4 flex flex-row">
+                  <div class="flex flex-col pr-36 border-r-2 pl-10 border-gray-200 w-[43.5%]">
+                    <div class="py-5">
+                      <p>{{ property.gymnasium }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.swimming_pool }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.kids_pool }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.badminton_court }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.tennis_court }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.cricket }} </p>
+                    </div>
+                  </div>
+                  <div class="flex flex-col ml-12">
+                    <div class="py-5">
+                      <p>{{ property.kid_play_areas }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.Basketball }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.Volleyball }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.yoga_areas }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.jogging }} </p>
+                    </div>
+                    <div class="py-5">
+                      <p>{{ property.table_tennis }} </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8" >
+              <div class="rounded-lg mb-2 ">
+                <button id="toggleButton2" onclick="toggleDropdown('convDropdown')"
+                  class="w-full mt-5 rounded-lg bg-gray-100 border-2 border-gray-200 text-left p-3 flex justify-between items-center">
+                  <span class="font-bold">Convenience</span>
+                  <span>▼</span>
+                </button>
+                <div id="convDropdown"
+                  class="rounded-b-lg bg-gray-100 border-b-2 border-l-2 border-r-2 border-gray-200 pb-6 hidden flex flex-wrap gap-4">
+                  <div class="container mt-4 flex flex-row">
+                    <div class="flex flex-col pr-36 border-r-2 pl-10 border-gray-200 w-[43.5%]">
+                      <div class="py-5">
+                        <p>{{ property.Power_backup }} </p>
+                      </div>
+                      <div class="py-5">
+                        <p>{{ property.treated_water_supply }} </p>
+                      </div>
+                      <div class="py-5">
+                        <p>{{ property.Guest_house }} </p>
+                      </div>
+                    </div>
+                    <div class="flex flex-col  pl-10 ">
+                      <div class="py-5">
+                        <p>{{ property.water_supply }} </p>
+                      </div>
+                      <div class="py-5">
+                        <p>{{ property.lift }} </p>
+                      </div>
+                      <div class="py-5">
+                        <p>{{ property.party_lawn }} </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <script>
+                const button1 = document.getElementById('toggleButton1');
+                const button2 = document.getElementById('toggleButton2');
+                const convdropdown = document.getElementById('convDropdown');
+                const sportsdropdown = document.getElementById('sportsDropdown');
+
+                button1.addEventListener('click', () => {
+                  button1.classList.toggle('border-b-0');
+                  button1.classList.toggle('rounded-b-sm');
+                });
+                button2.addEventListener('click', () => {
+                  button2.classList.toggle('border-b-0');
+                  button2.classList.toggle('rounded-b-sm')
+                });
+                
+                function toggleDropdown(id) {
+                  document.getElementById(id).classList.toggle("hidden");
+                }
+              </script>
+
+{% endblock %}
